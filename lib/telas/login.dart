@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'inicio.dart';
+import 'package:tarefas_app/BD/dados.dart';
 
 class Login extends StatefulWidget{
   @override
@@ -23,7 +24,8 @@ class _LoginState extends State<Login> {
 
     if (usuario.isNotEmpty) {
       _showSnackBar('Login bem-sucedido!');
-      Navigator.pushNamed(context, '/tela1');
+      Navigator.push(context, MaterialPageRoute(
+        builder: (_) => HomePageteste()));
     } else {
       _showSnackBar('Credenciais inválidas!');
         Navigator.push(context, MaterialPageRoute(
@@ -58,7 +60,7 @@ class _LoginState extends State<Login> {
               obscureText: true,
             ),
             SizedBox(height: 20),
-                        ElevatedButton(
+            ElevatedButton(
               onPressed: _login,
               child: Text('Login'),
             ),

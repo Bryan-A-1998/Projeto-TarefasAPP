@@ -7,15 +7,6 @@ class Dados extends ChangeNotifier{
   List<Usuario> _userlista = [];
   List<Tarefa> _tarefaslista = [];
 
- // UnmodifiableListView<Usuario> get list => UnmodifiableListView(_userlista);
-
-  /*salvarTudo(List<Usuario> usuario){
-    usuario.forEach((usuario) {
-      if (!_userlista.contains(usuario)) _userlista.add(usuario);
-    });
-    notifyListeners();
-  }*/
-
   savarUsuario(String email, String senha) {
     _userlista.add({'email': email, 'senha': senha} as Usuario);
     notifyListeners();

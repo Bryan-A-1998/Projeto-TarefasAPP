@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tarefas_app/telas/novaTarefa.dart';
+import 'package:tarefas_app/telas/perfil.dart';
+import 'package:tarefas_app/telas/tarefas.dart';
 
 class HomePageteste extends StatelessWidget {
  @override
@@ -10,19 +13,22 @@ class HomePageteste extends StatelessWidget {
  actions: [
  IconButton(
  icon: Icon(Icons.checklist),
- onPressed: () => print('Ver todas as tarefas'),
+ onPressed: () => Navigator.push(context, MaterialPageRoute(
+      builder: (_) => Tarefas(),)),
  ),
  IconButton(
  icon: Icon(Icons.person),
- onPressed: () => print('Visualizar Perfil'),
+ onPressed: () =>  Navigator.push(context, MaterialPageRoute(
+      builder: (_) => Perfil(),)),
  ),
  IconButton(
  icon: Icon(Icons.add),
- onPressed: () => print('Adicionar tarefa'),
+ onPressed: () => Navigator.push(context, MaterialPageRoute(
+      builder: (_) => NovaTarefa(),)),
  ),
  IconButton(
  icon: Icon(Icons.logout),
- onPressed: () => print('Logout'),
+ onPressed: () =>  Navigator.pop(context),
  ),
  ],
  ),

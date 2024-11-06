@@ -8,60 +8,17 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final _emailController = TextEditingController();
-  final _senhaController = TextEditingController();
-  //final List<Map<String, String>> _usuarios = [];
-
-// Função para verificar o formato do email
-  /*bool _isEmailValid(String email) {
-    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    return emailRegex.hasMatch(email);
-  }*/
 
   // Método para registrar o usuário
   void _cadastrar() {
-    //final email = _emailController.text;
-   // final senha = _senhaController.text;
-
     Navigator.push(context, MaterialPageRoute(
         builder: (_) => Cadastro(),));
-
-    /*if (email.isEmpty || senha.isEmpty) {
-      _showSnackBar('Preencha todos os campos!');
-    } else if (!_isEmailValid(email)) {
-      _showSnackBar('Por favor, insira um email válido.');
-    } else  {
-      setState(() {
-        _usuarios.add({'email': email, 'senha': senha});
-      });
-      _showSnackBar('Usuário registrado com sucesso!');
-      _emailController.clear();
-      _senhaController.clear();
-    }*/
-    
-
   }
 
   // Método para login do usuário
   void _login() {
-Navigator.push(context, MaterialPageRoute(
-        builder: (_) => Login(),));
-
-  /*  final email = _emailController.text;
-    final senha = _senhaController.text;
-
-    final usuario = _usuarios.firstWhere(
-      (user) => user['email'] == email && user['senha'] == senha,
-      orElse: () => {},
-    );
-
-    if (usuario.isNotEmpty) {
-      _showSnackBar('Login bem-sucedido!');
-      Navigator.push(context, MaterialPageRoute(
-        builder: (_) => HomePageteste(),));
-    } else {
-      _showSnackBar('Credenciais inválidas!');
-    }*/
+    Navigator.push(context, MaterialPageRoute(
+      builder: (_) => Login(),));
   }
 
   // Exibir feedback ao usuário
@@ -80,17 +37,7 @@ Navigator.push(context, MaterialPageRoute(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 100),
-            /*TextField(
-              controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
-            ),
-            TextField(
-              controller: _senhaController,
-              decoration: InputDecoration(labelText: 'Senha'),
-              obscureText: true,
-            ),*/
-            SizedBox(height: 100),
+            SizedBox(height: 200),
             OutlinedButton(
               onPressed: _cadastrar,
               child: Text('Cadastrar-se'),

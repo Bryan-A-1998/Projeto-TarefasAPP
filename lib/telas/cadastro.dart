@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tarefas_app/BD/globais.dart';
+import 'package:tarefas_app/BD/dados.dart';
+import 'package:tarefas_app/telas/login.dart';
 
 class Cadastro extends StatefulWidget{
   @override
@@ -26,12 +27,14 @@ class _CadastroState extends State<Cadastro> {
     } else if (!_isEmailValid(email)) {
       _showSnackBar('Por favor, insira um email válido.');
     } else {
-      setState(() {
-      usuarios.add({'email': email, 'senha': senha});
-      });
+      //arrumar
+      //_userlista.add({'email': email, 'senha': senha});
+      
       _showSnackBar('Usuário registrado com sucesso!');
       _emailController.clear();
       _senhaController.clear();
+      Navigator.push(context, MaterialPageRoute(
+      builder: (_) => Login(),));
     }
   }
 
