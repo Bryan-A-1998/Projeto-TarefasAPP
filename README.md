@@ -7,13 +7,9 @@ data e hora para a tarefa, na tela inicial do usuario apos login ele porerá ver
 no menu superior sera possivel entrar no perfil, verificar a sua lista de tarefas, adicionar uma nova tarefa e sair da aplicação.
 
   *PARTES FALTANTES*
-- desenvolver as telas de nova tarefa, lista de tarefas, perfil e detalhes das tarefas
-- desenvolver funcionalidades nova tarefa, detalhes de tarefas
-- terminar de organizar o codigo
-- realizar cruds via provider
-- adicionar cadastro e login na lista
-- mostrar dados
+- conectar dados a base de dados
 
   *DEPENDÊNCIAS*
   - provider
   - intl
+  - 
