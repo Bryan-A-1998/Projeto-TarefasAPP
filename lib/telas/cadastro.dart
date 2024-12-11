@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tarefas_app/BD/dados.dart';
 import 'package:tarefas_app/telas/login.dart';
+
+import '../controles/autentificacao.dart';
 
 class Cadastro extends StatefulWidget{
   @override
@@ -10,6 +13,7 @@ class Cadastro extends StatefulWidget{
 class _CadastroState extends State<Cadastro> {
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
+  late Dados dadoscadastro;
 
   // Função para verificar o formato do email
     bool _isEmailValid(String email) {
@@ -18,23 +22,16 @@ class _CadastroState extends State<Cadastro> {
   }
 
   // Método para registrar o usuário
-  void _cadastrar() {
+  Future<void> _cadastrar() async {
     final email = _emailController.text;
     final senha = _senhaController.text;
-
-    if (email.isEmpty || senha.isEmpty) {
-      _showSnackBar('Preencha todos os campos!');
-    } else if (!_isEmailValid(email)) {
-      _showSnackBar('Por favor, insira um email válido.');
-    } else {
-      //arrumar
-      //_userlista.add({'email': email, 'senha': senha});
-      
-      _showSnackBar('Usuário registrado com sucesso!');
-      _emailController.clear();
-      _senhaController.clear();
-      Navigator.push(context, MaterialPageRoute(
-      builder: (_) => Login(),));
+    
+        try {
+      await context.read<autentificacao>().registrar(email, senha);
+        Navigator.push(context, MaterialPageRoute(
+          builder: (_) => Login(),));
+    } on authExeption catch (e) {
+      _showSnackBar(e.msg);
     }
   }
 
@@ -47,6 +44,7 @@ class _CadastroState extends State<Cadastro> {
 
   @override
   Widget build(BuildContext context) {
+    dadoscadastro = Provider.of<Dados>(context);
     return Scaffold(
       appBar: AppBar(title: const Text('Cadastro')),
       body: Padding(

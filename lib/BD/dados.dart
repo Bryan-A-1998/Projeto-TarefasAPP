@@ -8,7 +8,7 @@ class Dados extends ChangeNotifier{
   List<Tarefa> _tarefaslista = [];
 
   savarUsuario(String email, String senha) {
-    _userlista.add({'email': email, 'senha': senha} as Usuario);
+    _userlista.add(Usuario(email: email, senha: senha));
     notifyListeners();
   }
   
@@ -17,8 +17,16 @@ class Dados extends ChangeNotifier{
     notifyListeners();
   }
 
-  savarTarefa(String nome, String descricao) {
-    _tarefaslista.add({'nome': nome, 'descricao': descricao} as Tarefa);
+  List<Usuario> get usuario => _userlista;
+  List<Tarefa> get tarefas => _tarefaslista;
+  
+  bool verificarLogin(String email, String senha) {
+    return _userlista.any((usuario) =>
+        usuario.email == email && usuario.senha == senha);
+  }
+
+  savarTarefa(String nome, DateTime data, String descricao) {
+    _tarefaslista.add(Tarefa(nome: nome, data: data, descricao: descricao));
     notifyListeners();
   }
   
@@ -26,4 +34,12 @@ class Dados extends ChangeNotifier{
     _tarefaslista.remove(tarefa);
     notifyListeners();
   }
+  
+  void removerTarefas(List<Tarefa> tarefasARemover) {
+  for (var tarefa in tarefasARemover) {
+    _tarefaslista.remove(tarefa);
+  }
+  notifyListeners();
+}
+
 }

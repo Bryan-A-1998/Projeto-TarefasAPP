@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'inicio.dart';
-import 'package:tarefas_app/BD/dados.dart';
+import 'package:provider/provider.dart';
+import 'package:tarefas_app/controles/autentificacao.dart';
+import 'package:tarefas_app/telas/cadastro.dart';
+import 'package:tarefas_app/telas/home.dart';
+import 'package:tarefas_app/telas/inicio.dart';
 
 class Login extends StatefulWidget{
   @override
@@ -10,27 +13,22 @@ class Login extends StatefulWidget{
 class _LoginState extends State<Login> {
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
-  final List<Map<String, String>> _usuarios = [];
 
   // Método para login do usuário
-  void _login() {
+  void _login() async{
     final email = _emailController.text;
     final senha = _senhaController.text;
 
-    final usuario = _usuarios.firstWhere(
-      (user) => user['email'] == email && user['senha'] == senha,
-      orElse: () => {},
-    );
-
-    if (usuario.isNotEmpty) {
-      _showSnackBar('Login bem-sucedido!');
-      Navigator.push(context, MaterialPageRoute(
-        builder: (_) => HomePageteste()));
-    } else {
-      _showSnackBar('Credenciais inválidas!');
+    try {
+      await context.read<autentificacao>().login(email, senha);
+      () => Navigator.push(context, MaterialPageRoute(
+      builder: (_) => HomePageteste(),));
+    } on authExeption catch (e) {
+      _showSnackBar(e.msg);
         Navigator.push(context, MaterialPageRoute(
-        builder: (_) => HomePageteste()));
+          builder: (_) => Home(),));
     }
+
   }
 
   // Exibir feedback ao usuário
@@ -64,6 +62,11 @@ class _LoginState extends State<Login> {
               onPressed: _login,
               child: Text('Login'),
             ),
+            SizedBox(height: 20),
+            TextButton(
+              onPressed: () => Navigator.push(context, MaterialPageRoute(
+                  builder: (_) => Cadastro(),)),
+              child: Text('Registrar-se'),)
           ],
         ),
       ),
