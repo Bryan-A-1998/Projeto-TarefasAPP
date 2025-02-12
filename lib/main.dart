@@ -29,7 +29,9 @@ class MyApp extends StatelessWidget{
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => autentificacao()),
-        ChangeNotifierProvider(create: (context) => Dados()),
+        ChangeNotifierProvider(create: (context) => Dados(
+          auth: context.read<autentificacao>(),
+        )),
       ],
       child: MaterialApp(
       title: 'Tarefas App',
@@ -45,7 +47,7 @@ class MyApp extends StatelessWidget{
         '/inicio': (context) => HomePageteste(),
         '/cadastro': (context) => Cadastro(),
         '/login': (context) => Login(),
-        '/tarefas': (context) => Tarefas(),
+        '/paginatarefas': (context) => Tarefas(),
       },
     ),);
   }
