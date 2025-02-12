@@ -86,14 +86,14 @@ class _TarefasState extends State<Tarefas> {
                   margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: ListTile(
                     title: Text(
-                      tarefa.nome,
+                      tarefa.titulo,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Data: ${tarefa.data.day}/${tarefa.data.month}/${tarefa.data.year} às ${tarefa.data.hour}:${tarefa.data.minute.toString().padLeft(2, '0')}',
+                          'Data: ${tarefa.dataHora.day}/${tarefa.dataHora.month}/${tarefa.dataHora.year} às ${tarefa.dataHora.hour}:${tarefa.dataHora.minute.toString().padLeft(2, '0')}',
                         ),
                         SizedBox(height: 5),
                         Text('Descrição: ${tarefa.descricao}'),

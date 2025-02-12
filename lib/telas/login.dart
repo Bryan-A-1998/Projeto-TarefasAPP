@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tarefas_app/controles/autentificacao.dart';
 import 'package:tarefas_app/telas/cadastro.dart';
-import 'package:tarefas_app/telas/home.dart';
 import 'package:tarefas_app/telas/inicio.dart';
 
 class Login extends StatefulWidget{
@@ -25,8 +24,6 @@ class _LoginState extends State<Login> {
       builder: (_) => HomePageteste(),));
     } on authExeption catch (e) {
       _showSnackBar(e.msg);
-        Navigator.push(context, MaterialPageRoute(
-          builder: (_) => Home(),));
     }
 
   }
@@ -34,8 +31,9 @@ class _LoginState extends State<Login> {
   // Exibir feedback ao usuário
   void _showSnackBar(String mensagem) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(mensagem)),
-    );
+      SnackBar(content: Text(mensagem),
+      duration: Duration(seconds: 2),),
+    );    
   }
 
 

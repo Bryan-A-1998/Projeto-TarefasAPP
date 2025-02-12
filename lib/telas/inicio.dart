@@ -45,9 +45,9 @@ class HomePageteste extends StatelessWidget {
  
  body: dadostarefas.tarefas
         .where((tarefa) =>
-            tarefa.data.year == DateTime.now().year &&
-            tarefa.data.month == DateTime.now().month &&
-            tarefa.data.day == DateTime.now().day)
+            tarefa.dataHora.year == DateTime.now().year &&
+            tarefa.dataHora.month == DateTime.now().month &&
+            tarefa.dataHora.day == DateTime.now().day)
         .isEmpty
     ? Center(
         child: Text(
@@ -62,30 +62,30 @@ class HomePageteste extends StatelessWidget {
         // Filtra as tarefas do dia atual
         itemCount: dadostarefas.tarefas
             .where((tarefa) =>
-                tarefa.data.year == DateTime.now().year &&
-                tarefa.data.month == DateTime.now().month &&
-                tarefa.data.day == DateTime.now().day)
+                tarefa.dataHora.year == DateTime.now().year &&
+                tarefa.dataHora.month == DateTime.now().month &&
+                tarefa.dataHora.day == DateTime.now().day)
             .length,
         itemBuilder: (context, index) {
           // Obtém apenas as tarefas do dia atual
           final tarefa = dadostarefas.tarefas
               .where((tarefa) =>
-                  tarefa.data.year == DateTime.now().year &&
-                  tarefa.data.month == DateTime.now().month &&
-                  tarefa.data.day == DateTime.now().day)
+                  tarefa.dataHora.year == DateTime.now().year &&
+                  tarefa.dataHora.month == DateTime.now().month &&
+                  tarefa.dataHora.day == DateTime.now().day)
               .toList()[index];
           return Card(
             margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: ListTile(
               title: Text(
-                tarefa.nome,
+                tarefa.titulo,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Data: ${tarefa.data.day}/${tarefa.data.month}/${tarefa.data.year} às ${tarefa.data.hour}:${tarefa.data.minute.toString().padLeft(2, '0')}',
+                    'Data: ${tarefa.dataHora.day}/${tarefa.dataHora.month}/${tarefa.dataHora.year} às ${tarefa.dataHora.hour}:${tarefa.dataHora.minute.toString().padLeft(2, '0')}',
                   ),
                   SizedBox(height: 5),
                   Text('Descrição: ${tarefa.descricao}'),
@@ -100,7 +100,7 @@ class HomePageteste extends StatelessWidget {
                     builder: (context) => AlertDialog(
                       title: Text('Excluir Tarefa'),
                       content: Text(
-                          'Tem certeza que deseja excluir a tarefa "${tarefa.nome}"?'),
+                          'Tem certeza que deseja excluir a tarefa "${tarefa.titulo}"?'),
                       actions: [
                         TextButton(
                           child: Text('Cancelar'),
